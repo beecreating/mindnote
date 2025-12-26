@@ -10,7 +10,7 @@ export const paperStyles = StyleSheet.create({
   // A faint red margin line on the left
   marginLine: {
     position: "absolute",
-    left: 26,
+    left: 72, // on 3rd notebook line
     top: 0,
     bottom: 0,
     width: 1,
@@ -22,7 +22,7 @@ export const paperStyles = StyleSheet.create({
     flex: 1,
     paddingTop: 18,
     paddingHorizontal: 18,
-    paddingLeft: 44, // pushes content to the right of the red margin line
+    paddingLeft: 72, // pushes content to the right of the red margin line
   },
 
   rule: {
@@ -31,3 +31,4 @@ export const paperStyles = StyleSheet.create({
     marginVertical: 10,
   },
 });
+

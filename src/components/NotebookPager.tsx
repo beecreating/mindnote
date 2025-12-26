@@ -1,3 +1,4 @@
+//import BinderHoles from "@/src/components/BinderHoles";
 import MonthGoals from "@/src/screens/MonthGoals";
 import MonthMain from "@/src/screens/MonthMain";
 import { paperStyles } from "@/src/styles/paper";
@@ -5,6 +6,9 @@ import { theme, typography } from "@/src/styles/theme";
 import React, { useMemo, useState } from "react";
 import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import PagerView from "react-native-pager-view";
+
+
+
 
 type PageKind = "main" | "goals";
 type Page = { year: number; month: number; kind: PageKind }; // month 1..12
@@ -45,9 +49,9 @@ function buildPages(centerYear: number, centerMonth: number) {
 
 // Simple grid overlay component (faint blue graph paper)
 function GridOverlay() {
-  const spacing = 18;
-  const lines = 120; // enough to cover most screens vertically
-  const vLines = 40; // enough horizontally
+  const spacing = 24;
+  const lines = 70; // enough to cover most screens vertically
+  const vLines = 25; // enough horizontally
 
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -107,6 +111,9 @@ export default function NotebookPager() {
   return (
     <View style={paperStyles.page}>
       <GridOverlay />
+
+      {/*<BinderHoles grid={24} variant={current.kind} />*/}
+
       <View style={paperStyles.marginLine} />
 
       {/* Header */}
@@ -138,6 +145,7 @@ export default function NotebookPager() {
           </View>
         ))}
       </PagerView>
+      
 
       {/* Very minimal month picker for big jumps (MVP placeholder) */}
       <Modal visible={pickerOpen} transparent animationType="fade" onRequestClose={() => setPickerOpen(false)}>
@@ -186,9 +194,9 @@ export default function NotebookPager() {
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 18,
+    paddingTop: 36,
     paddingHorizontal: 18,
-    paddingLeft: 44, // align with content past margin
+    paddingLeft: 75, // align with content past margin
   },
   brand: {
     color: theme.ink,
@@ -197,7 +205,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.2,
   },
   monthRow: {
-    marginTop: 6,
+    marginTop: 7,
     flexDirection: "row",
     alignItems: "baseline",
     gap: 6,
