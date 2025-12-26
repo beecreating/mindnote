@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "MindNote",
-    "slug": "MindNote",
+    "slug": "mindnote",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
