@@ -3,9 +3,10 @@ import MonthGoals from "@/src/screens/MonthGoals";
 import MonthMain from "@/src/screens/MonthMain";
 import { paperStyles } from "@/src/styles/paper";
 import { theme, typography } from "@/src/styles/theme";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Modal, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import PagerView from "react-native-pager-view";
+import { migrate } from "../storage/db";
 
 
 
@@ -102,11 +103,23 @@ export default function NotebookPager() {
     return Math.max(0, idx);
   }, [pages, anchor.year, anchor.month]);
 
+
   const [pageIndex, setPageIndex] = useState(initialPage);
 
   const current = pages[pageIndex] ?? pages[0];
   const title = monthLabel(current.year, current.month);
   const subtitle = current.kind === "main" ? "Main" : "Goals";
+
+  const [ready, setReady] = useState(false);
+
+    useEffect(() => {
+    (async () => {
+        await migrate();
+        setReady(true);
+    })();
+    }, []);
+
+    if (!ready) return null;
 
   return (
     <View style={paperStyles.page}>
